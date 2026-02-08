@@ -1,0 +1,11 @@
+{
+  "name": "openclaw-guard",
+  "description": "Security proxy for OpenClaw — block dangerous shell commands, human-in-the-loop approval, token circuit breaker",
+  "private": true,
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^9.2.0",
+    "semantic-release": "^23.0.0"
+  }
+}
