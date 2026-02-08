@@ -101,6 +101,17 @@ OpenClaw can run on the host; set `CLAWGUARD_TARGET_HOST=host.docker.internal`. 
 
 ---
 
+## 🧪 Running tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest tests/ -v
+```
+
+Optional: `pytest tests/ --cov=core --cov=config --cov-report=term-missing` for coverage.
+
+---
+
 ## 🤝 Contributing
 
 We welcome issues and PRs. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
