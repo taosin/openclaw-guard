@@ -110,7 +110,3 @@ We welcome issues and PRs. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
 ## 📄 License
 
 [MIT](LICENSE).
-
----
-
-<sub>After creating the repo, replace <code>taosin</code> in clone URLs and badge links with your GitHub username.</sub>
