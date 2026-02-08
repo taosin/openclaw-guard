@@ -1,0 +1,33 @@
+# OpenClawGuard + OpenClaw (one-click Docker setup)
+# Usage: copy to docker-compose.yml, set env, then: docker compose up -d
+#
+# This runs ClawGuard as a proxy; OpenClaw can run on host or in another service.
+# To run OpenClaw inside Docker too, add an openclaw service and set
+# CLAWGUARD_TARGET_HOST=openclaw, CLAWGUARD_TARGET_PORT=<openclaw port>.
+
+services:
+  clawguard:
+    image: python:3.11-slim
+    working_dir: /app
+    command: ["python", "clawguard.py", "--target-port", "8080", "--port", "8081"]
+    ports:
+      - "8081:8081"
+    environment:
+      - CLAWGUARD_TARGET_HOST=host.docker.internal  # OpenClaw on host
+      - CLAWGUARD_TARGET_PORT=8080
+      - CLAWGUARD_PORT=8081
+      - CLAWGUARD_SANDBOX=/workspace
+      - CLAWGUARD_TOKEN_LIMIT=100000
+      - CLAWGUARD_TOKEN_WINDOW_SEC=86400   # daily reset
+      - CLAWGUARD_PUBLIC_URL=http://localhost:8081  # for one-click approve links
+      # Optional: Telegram/WeChat for approval
+      # - CLAWGUARD_TELEGRAM_BOT_TOKEN=...
+      # - CLAWGUARD_TELEGRAM_CHAT_ID=...
+    volumes:
+      - .:/app
+      - workspace_data:/workspace  # persisted workspace for AI
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  workspace_data: {}
